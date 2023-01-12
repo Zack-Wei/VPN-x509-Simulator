@@ -1,0 +1,23 @@
+###############################
+#
+# internet.startup
+#
+###############################
+
+# eth10 connect to the remote user 1-2 which using wireguard
+ip link set dev eth10 address 02:00:00:10:10:10
+ip addr add 31.205.100.1/24 dev eth10
+ip link set up dev eth10
+
+# eth11 connect to the remote user 3-4 which using ipsec  
+ip link set dev eth11 address 02:00:00:10:10:11
+ip addr add 31.205.101.1/24 dev eth11
+ip link set up dev eth11
+
+# eth1 connect to the gw-wireguard, gw-ipsec
+ip addr add 213.0.133.161/27 dev eth1
+ip link set dev eth1 address 02:00:00:10:10:01
+ip link set up dev eth1
+
+
+
