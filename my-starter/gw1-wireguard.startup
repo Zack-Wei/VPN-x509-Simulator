@@ -4,7 +4,7 @@
 #
 ###############################
 
-ip addr add 10.0.0.1/28 dev eth1
+ip addr add 192.168.80.1/20 dev eth1
 ip link set up dev eth1
 
 ip addr add 213.0.133.162/27 dev eth2
@@ -17,7 +17,6 @@ iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
 
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 echo "net.ipv4.conf.all.proxy_arp = 1" >> /etc/sysctl.conf
-#sysctl -p /etc/sysctl.conf
 sysctl -p
 
 chmod +x /etc/wireguard/postup.sh
