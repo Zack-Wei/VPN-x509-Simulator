@@ -14,10 +14,14 @@ ip link set dev eth11 address 02:00:00:10:10:11
 ip addr add 31.205.101.1/24 dev eth11
 ip link set up dev eth11
 
-# eth1 connect to the gw-wireguard, gw-ipsec
+# eth12 connect to the x509 ca
+ip addr add 192.0.0.1/28 dev eth12
+ip link set dev eth12 address 02:00:00:10:10:12
+ip link set up dev eth12
+
+# eth1 connect to the gw1-wireguard, gw-ipsec
 ip addr add 213.0.133.161/27 dev eth1
 ip link set dev eth1 address 02:00:00:10:10:01
 ip link set up dev eth1
-
 
 

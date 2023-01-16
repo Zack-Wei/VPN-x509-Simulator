@@ -1,0 +1,1 @@
+V	330112194329Z		1000	unknown	/C=GB/ST=England/O=Cyber22 Ltd/OU=u2229437/CN=intermediateCA

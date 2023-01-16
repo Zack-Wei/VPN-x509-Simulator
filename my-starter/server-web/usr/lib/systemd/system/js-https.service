@@ -1,0 +1,13 @@
+[Unit]
+Description=an example js https service
+After=rc.local.service
+#StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/root/https-setup.sh
+#Restart=always
+#RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
