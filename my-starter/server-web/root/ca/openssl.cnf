@@ -27,9 +27,9 @@ emailAddress                    = Email Address
 # Optionally, specify some defaults.
 countryName_default             = GB
 stateOrProvinceName_default     = England
-localityName_default            = UoW
+localityName_default            = Lemington
 0.organizationName_default      = Cyber22
-organizationalUnitName_default  = 2229437
+organizationalUnitName_default  = u2229437
 emailAddress_default            =
 
 [ v3_ca ]
