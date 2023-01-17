@@ -12,9 +12,6 @@ ip link set up dev eth2
 
 ip route add default via 213.0.133.161
 
-# SNAT
-iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
-
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 echo "net.ipv4.conf.all.proxy_arp = 1" >> /etc/sysctl.conf
 sysctl -p

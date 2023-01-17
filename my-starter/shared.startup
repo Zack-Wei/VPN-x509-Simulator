@@ -1,0 +1,21 @@
+###############################
+#
+# shared.startup
+#
+###############################
+
+# disable IP6 by appending to sysctl.conf
+echo "net.ipv6.conf.all.disable_ipv6 = 1 # appended by shared.startup"  >> /etc/sysctl.conf
+
+# force modified sysctl.conf to be re-read
+sysctl -p
+
+# Configure DNS resolver
+cat << EOF > /etc/resolvconf/resolv.conf.d/base
+search 2229437.cyber22.test
+nameserver 8.8.8.8
+EOF
+
+# force new /etc/resolvconf/resolv.conf.d/base to be re-read
+echo "Running resolvconf -u (again) to regen /etc/resolvconf"
+resolvconf -u

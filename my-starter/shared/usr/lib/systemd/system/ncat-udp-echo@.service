@@ -1,0 +1,11 @@
+[Unit]
+Description=Ncat UDP Echo Service
+Documentation=man:ncat(1)
+After=networking.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ncat --exec "/usr/bin/cat -" -ukl4p %i 
+
+[Install]
+WantedBy=multi-user.target

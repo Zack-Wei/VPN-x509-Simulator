@@ -91,7 +91,7 @@ openssl ca -config ./openssl.cnf \
       -days 3650 -notext -md sha256 \
       -in unsigned/intermediate.csr.pem \
       -out signed/intermediate.cert.pem
-#chmod 444 signed/intermediate.cert.pem
+chmod 444 signed/intermediate.cert.pem
 
 # verify the intermediate cert
 openssl x509 -noout -text -in signed/intermediate.cert.pem
@@ -100,20 +100,19 @@ openssl x509 -noout -text -in signed/intermediate.cert.pem
 openssl verify -CAfile certs/ca.cert.pem \
       signed/intermediate.cert.pem      
 
+# return it to the intermediate ca
+cd ${X509DIR}
+cp ./ca-root/root/ca/signed/intermediate.cert.pem ./ca-intermediate/root/ca/certs/
+chmod 444 ./ca-intermediate/root/ca/certs/intermediate.cert.pem
+
 #When the browser verifies the intermediate certificate
 #It will also verify whether its upper-level certificate is reliable
 #Create a certificate chain, and merge the root cert and intermediate cert together
 #So that the browser can verify them together
 cd ${X509DIR}
-
 cat ./ca-intermediate/root/ca/certs/intermediate.cert.pem \
       ./ca-root/root/ca/certs/ca.cert.pem > ./ca-intermediate/root/ca/certs/ca-chain.cert.pem
 chmod 444 ./ca-intermediate/root/ca/certs/ca-chain.cert.pem
-
-# return it to the intermediate ca
-cd ${X509DIR}
-cp ./ca-root/root/ca/signed/intermediate.cert.pem ./ca-intermediate/root/ca/certs/
-chmod 444 ./ca-intermediate/root/ca/certs/intermediate.cert.pem
 
 ########## SERVER ####################
 # prep the server dirs
@@ -146,20 +145,20 @@ openssl ca -config ./openssl.cnf \
       -notext -md sha256 \
       -in unsigned/server.csr.pem \
       -out signed/server.cert.pem
-# chmod 444 signed/server.cert.pem
+chmod 444 signed/server.cert.pem
 
 # verify the cert
 openssl x509 -noout -text -in signed/server.cert.pem
-openssl verify -CAfile certs/ca-chain.cert.pem \
-      signed/server.cert.pem 
+openssl verify -CAfile ./certs/ca-chain.cert.pem \
+      ./signed/server.cert.pem 
  
-# return it to the server
+# return it to the server and example client
 cd ${X509DIR}
 cp ./ca-intermediate/root/ca/signed/server.cert.pem ./server-web/root/ca/
 cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./server-web/root/ca/
 chmod 444 ./server-web/root/ca/server.cert.pem
-chmod 444 ./server-web/root/ca/ca-chain.cert.pem
 
-
+cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./remote-user-1/root/
+cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./remote-user-2/root/
 
 

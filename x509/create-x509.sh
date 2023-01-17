@@ -126,7 +126,7 @@ openssl req -config ./openssl.cnf \
 cd ${X509DIR}
 cp ./server/server.csr.pem ./ca/intermediate/unsigned/
 
-# get the intermdiate cert signed by the root cert
+# get the server cert signed by the intermediate cert
 cd ./ca/intermediate/
 openssl ca -config ./openssl.cnf \
       -extensions server_cert \

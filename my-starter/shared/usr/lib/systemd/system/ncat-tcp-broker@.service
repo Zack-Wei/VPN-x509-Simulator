@@ -1,0 +1,11 @@
+[Unit]
+Description=Ncat TCP Broker Service
+Documentation=man:ncat(1)
+After=networking.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ncat --broker --output /var/log/ncat-broker%i -4lp %i 
+
+[Install]
+WantedBy=multi-user.target

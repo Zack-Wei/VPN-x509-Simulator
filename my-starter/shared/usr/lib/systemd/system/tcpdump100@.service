@@ -1,0 +1,12 @@
+[Unit]
+Description=Tcpdump 100 packets from @device to /hostlab/.output/<host>-<dev>-<unitname>.pcap
+Documentation=man:tcpdump(1)
+After=networking.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/mkdir --parents /hostlab/.output
+ExecStart=/usr/local/bin/tcpdump -c100 -s0 -i %i -w /hostlab/.output/%H-%i-%p.pcap
+
+[Install]
+WantedBy=multi-user.target

@@ -19,6 +19,11 @@ ip addr add 192.0.0.1/28 dev eth12
 ip link set dev eth12 address 02:00:00:10:10:12
 ip link set up dev eth12
 
+# eth13 connect to the dns
+ip addr add 8.8.8.1/24 dev eth13
+ip link set dev eth13 address 02:00:00:10:10:13
+ip link set up dev eth13
+
 # eth1 connect to the gw1-wireguard, gw-ipsec
 ip addr add 213.0.133.161/27 dev eth1
 ip link set dev eth1 address 02:00:00:10:10:01

@@ -13,7 +13,7 @@ ip route add default via 213.0.133.161
 chmod +x ~/nodejs-install.sh
 ~/nodejs-install.sh 
 
-echo "127.0.0.1    web.2229437.cyber22.test" >> /etc/hosts
+#echo "127.0.0.1    www.2229437.cyber22.test" >> /etc/hosts
 
 chmod +x ~/https-setup.sh
 systemctl start js-https.service
