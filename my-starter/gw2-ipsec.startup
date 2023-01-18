@@ -1,0 +1,14 @@
+###############################
+#
+# gw2-ipsec.startup
+#
+###############################
+
+ip addr add 192.168.80.2/20 dev eth1
+ip link set up dev eth1
+
+ip addr add 213.0.133.163/27 dev eth2
+ip link set up dev eth2
+
+ip route add default via 213.0.133.161
+

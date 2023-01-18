@@ -3,10 +3,13 @@ remote-user-2: r1
 remote-user-1: internet
 r1: internet
 gw1-wireguard: internet
-server-web: internet
-ca-root: internet
-ca-intermediate: internet
+gw2-ipsec: Internet
+gw3-main: internet
 dns: internet
+
+server-web: gw3-main
+ca-root: gw3-main
+ca-intermediate: gw3-main
 
 workstation-wg: gw1-wireguard
 
