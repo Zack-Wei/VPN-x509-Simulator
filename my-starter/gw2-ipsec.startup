@@ -4,7 +4,7 @@
 #
 ###############################
 
-ip addr add 192.168.80.11/20 dev eth1
+ip addr add 192.168.80.33/27 dev eth1
 ip link set up dev eth1
 
 ip addr add 213.0.133.163/27 dev eth2

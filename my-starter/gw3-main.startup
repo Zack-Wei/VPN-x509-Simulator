@@ -4,7 +4,7 @@
 #
 ###############################
 
-ip addr add 192.168.80.31/20 dev eth1
+ip addr add 192.168.80.65/27 dev eth1
 ip link set up dev eth1
 
 ip addr add 213.0.133.164/27 dev eth2
@@ -21,7 +21,7 @@ iptables -A FORWARD -i eth1 -o eth2 -p all -s 192.168.80.80/32 --match conntrack
 iptables -A FORWARD -i eth2 -o eth1 -p all -d 192.168.80.80/32 --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 # allow servers connect to the gw3
 
-iptables -A INPUT -i eth1 -p all -s 192.168.80.0/20 -j ACCEPT
+iptables -A INPUT -i eth1 -p all -s 192.168.80.64/27 -j ACCEPT
 iptables -A INPUT -i eth2 -p all --match conntrack --ctstate ESTABLISHED -j ACCEPT
 
 iptables -A OUTPUT -p all --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
