@@ -1,16 +1,16 @@
-remote-user-2: r1
+#remote-user-2: r1
 
-remote-user-1: internet
-r1: internet
-gw1-wireguard: internet
-gw2-ipsec: Internet
-gw3-main: internet
-dns: internet
+#remote-user-1: internet
+#r1: internet
+#gw1-wireguard: internet
+#gw2-ipsec: Internet
+#gw3-main: internet
+#dns: internet
 
-server-web: gw3-main
-ca-root: gw3-main
-ca-intermediate: gw3-main
+#server-web: gw3-main
+#ca-root: gw3-main
+#ca-intermediate: gw3-main
 
-workstation-wg: gw1-wireguard
+#workstation-wg: gw1-wireguard
 
 

@@ -13,15 +13,18 @@ ip link set up dev eth2
 ip route add default via 213.0.133.161
 
 # iptables rules
-#iptables -P INPUT DROP
-#iptables -P OUTPUT DROP
-#iptables -P FORWARD DROP
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
 # allow webserver accessing the Internet and be accessed
 iptables -A FORWARD -i eth1 -o eth2 -p all -s 192.168.80.80/32 --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -i eth2 -o eth1 -p tcp -d 192.168.80.80/32 --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth2 -o eth1 -p all -d 192.168.80.80/32 --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 # allow servers connect to the gw3
+
 iptables -A INPUT -i eth1 -p all -s 192.168.80.0/20 -j ACCEPT
-iptables -A OUTPUT -i eth1 -p all -d 192.168.80.0/20 -j ACCEPT
+iptables -A INPUT -i eth2 -p all --match conntrack --ctstate ESTABLISHED -j ACCEPT
+
+iptables -A OUTPUT -p all --match conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # SNAT for the webserver
 iptables -t nat -A POSTROUTING -o eth2 -j SNAT --to-source 213.0.133.164

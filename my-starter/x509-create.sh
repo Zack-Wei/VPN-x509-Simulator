@@ -157,9 +157,10 @@ cd ${X509DIR}
 cp ./ca-intermediate/root/ca/signed/server.cert.pem ./server-web/root/ca/
 chmod 444 ./server-web/root/ca/server.cert.pem
 
-mkdir -p ./server-web/etc/ssl/certs ./remote-user-1/etc/ssl/certs ./remote-user-2/etc/ssl/certs
+mkdir -p ./server-web/etc/ssl/certs ./remote-user-1/etc/ssl/certs ./remote-user-2/etc/ssl/certs ./internet/etc/ssl/certs
 cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./server-web/etc/ssl/certs
 cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./remote-user-1/etc/ssl/certs
 cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./remote-user-2/etc/ssl/certs
+cp ./ca-intermediate/root/ca/certs/ca-chain.cert.pem ./internet/etc/ssl/certs
 
 
