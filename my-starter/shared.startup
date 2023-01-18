@@ -12,7 +12,7 @@ sysctl -p
 
 # Configure DNS resolver
 cat << EOF > /etc/resolvconf/resolv.conf.d/base
-search 2229437.cyber22.test
+search u2229437.cyber22.test
 nameserver 8.8.8.8
 EOF
 

@@ -13,5 +13,5 @@ https.createServer(options, function(req, res) {
   res.writeHead(200);
   res.end("It Works!\n");
 }).listen(443, function(){
-  console.log('Open URL: https://www.2229437.cyber22.test');
+  console.log('Open URL: https://www.u2229437.cyber22.test');
 });
