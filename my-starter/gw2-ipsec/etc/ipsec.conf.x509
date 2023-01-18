@@ -1,0 +1,47 @@
+#################################
+#
+# rB /etc/ipsec.conf.x509
+#
+# included from default /etc/ipsec.conf
+#
+## man ipsec.conf for more detail
+
+######################################
+## general configuration parameters ##
+##
+config setup
+        # charon is the IKE daemon (v1 & v2 since StrongSwan 5.0). 
+        # charondebug is comma separaed list of type level
+        # types may be dmn, mgr, ike, chd, job, cfg, knl, net, asn, enc, lib, esp, tls, tnc, imc, imv, pts
+        # levels may be -1 (silent), 0 (audit), 1 (control), 2 (controlmore), 3 (raw), 4 (private)
+        charondebug="dmn 3, mgr 3, ike 3, chd 3, job -1, cfg 3, knl 1, net 1, enc 2, lib -1"
+
+##########################################
+## spcific vpn configuration parameters ##
+## (one conn block per vpn)             ##
+
+####################################
+## the rB end of the rA to rB vpn ##
+conn rA-rB                        # 
+        authby=pubkey             # this covers rsa and dsa
+        auto=add                  # rA will initiate connection at startup
+        keyexchange=ikev2         # prefer v2 to v1
+        ike=aes256-sha1-modp1024  # encryption-integrity-dhgroup
+        esp=aes256-sha1-modp1024  # by specifying a dhgroup for esp, we get perfect forward secrecy
+        type=tunnel               # main alternative is transport
+                 
+        ## on rB, right is the local end
+        left=192.0.2.2            # public routable ip address
+        leftsubnet=172.28.97.40/29 # address range "hidden" behind the left end
+        right=198.51.100.2        # public routable ip address
+        rightsubnet=10.0.0.0/27   # address range "hidden" behind the right end
+        
+        # CA Certs in /etc/ipsec.d/cacerts directory are loaded automatically at startup
+        leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
+        rightcert=vpn_rB_Cert.der # ditto (note we have the certs for both ends)
+        
+
+
+
+
+
