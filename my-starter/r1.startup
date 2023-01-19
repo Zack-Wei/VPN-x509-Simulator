@@ -9,3 +9,5 @@ ip route add default via 31.205.100.1
 
 # SNAT
 iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+
+systemctl start ipsec.service

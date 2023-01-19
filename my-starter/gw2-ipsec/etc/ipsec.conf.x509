@@ -1,6 +1,6 @@
 #################################
 #
-# rB /etc/ipsec.conf.x509
+# gw /etc/ipsec.conf.x509
 #
 # included from default /etc/ipsec.conf
 #
@@ -21,8 +21,8 @@ config setup
 ## (one conn block per vpn)             ##
 
 ####################################
-## the rB end of the rA to rB vpn ##
-conn rA-rB                        # 
+## the gw end of the r1 to gw vpn ##
+conn r1-gw                        # 
         authby=pubkey             # this covers rsa and dsa
         auto=add                  # rA will initiate connection at startup
         keyexchange=ikev2         # prefer v2 to v1
@@ -30,11 +30,11 @@ conn rA-rB                        #
         esp=aes256-sha1-modp1024  # by specifying a dhgroup for esp, we get perfect forward secrecy
         type=tunnel               # main alternative is transport
                  
-        ## on rB, right is the local end
-        left=192.0.2.2            # public routable ip address
-        leftsubnet=172.28.97.40/29 # address range "hidden" behind the left end
-        right=198.51.100.2        # public routable ip address
-        rightsubnet=10.0.0.0/27   # address range "hidden" behind the right end
+        # on gw, right is the local end
+        left=31.205.100.12            # public routable ip address
+        leftsubnet=10.0.0.1/28 # address range "hidden" behind the left end
+        right=213.0.133.163        # public routable ip address
+        rightsubnet=192.168.80.32/27   # address range "hidden" behind the right end
         
         # CA Certs in /etc/ipsec.d/cacerts directory are loaded automatically at startup
         leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
