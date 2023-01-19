@@ -32,13 +32,13 @@ conn r1-gw                        #
                  
         ## on r1, left is the local end
         left=31.205.100.12            # public routable ip address
-        leftsubnet=10.0.0.1/28 # address range "hidden" behind the left end
+        #leftsubnet=10.0.0.1/28 # address range "hidden" behind the left end
         right=213.0.133.163        # public routable ip address
-        rightsubnet=192.168.80.32/27   # address range "hidden" behind the right end
+        rightsubnet=192.168.80.0/20   # address range "hidden" behind the right end
         
         # CA Certs in /etc/ipsec.d/cacerts directory are loaded automatically at startup
-        leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
-        rightcert=vpn_rB_Cert.der # ditto (note we have the certs for both ends)
+        leftcert=ipsec-client.cert.pem  # path relative to /etc/ipsec.d/certs directory
+        rightcert=ipsec-server.cert.pem # ditto (note we have the certs for both ends)
 
 
 

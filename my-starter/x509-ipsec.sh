@@ -20,6 +20,8 @@ openssl req -config ./openssl.cnf \
       -new -sha256 \
       -out ./certs/ipsec-server.csr.pem
 
+cd ${X509DIR}
+cd ./r1/etc/ipsec.d
 # generate the client key 
 # Set the server/client certificate expiration time to one year,
 # So 2048 encryption can be safely used.
@@ -31,6 +33,9 @@ openssl req -config ./openssl.cnf \
       -key ./private/ipsec-client.key.pem \
       -new -sha256 \
       -out ./certs/ipsec-client.csr.pem
+
+cd ${X509DIR}
+cp ./r1/etc/ipsec.d/certs/ipsec-client.csr.pem ./gw2-ipsec/etc/ipsec.d/certs/
 
 ######### INTERMDEDIATE CA SIGNS SERVER/CLIENT CSR #################
 # send the server cert csr to the intermediate ca
@@ -66,6 +71,7 @@ openssl verify -CAfile ./certs/ca-chain.cert.pem \
 # return it to the server and client
 cd ${X509DIR}
 cp ./ca-intermediate/root/ca/signed/ipsec-server.cert.pem ./gw2-ipsec/etc/ipsec.d/certs/
+cp ./ca-intermediate/root/ca/signed/ipsec-server.cert.pem ./r1/etc/ipsec.d/certs/
 cp ./ca-intermediate/root/ca/signed/ipsec-client.cert.pem ./gw2-ipsec/etc/ipsec.d/certs/
 cp ./ca-intermediate/root/ca/signed/ipsec-client.cert.pem ./r1/etc/ipsec.d/certs/
 
