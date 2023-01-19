@@ -12,4 +12,7 @@ ip link set up dev eth2
 
 ip route add default via 213.0.133.161
 
+# SNAT
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
 systemctl start ipsec.service

@@ -31,14 +31,14 @@ conn r1-gw                        #
         type=tunnel               # main alternative is transport
                  
         # on gw, right is the local end
-        left=213.0.133.163            # public routable ip address
-        leftsubnet=192.168.80.0/20 # address range "hidden" behind the left end
-        right=31.205.100.12       # public routable ip address
-        #rightsubnet=10.0.0.0/28   # address range "hidden" behind the right end
+        left=31.205.100.12            # public routable ip address
+        leftsubnet=10.0.0.1/28 # address range "hidden" behind the left end
+        right=213.0.133.163        # public routable ip address
+        rightsubnet=192.168.80.0/20   # address range "hidden" behind the right end
         
         # CA Certs in /etc/ipsec.d/cacerts directory are loaded automatically at startup
-        leftcert=ipsec-server.cert.pem # ditto (note we have the certs for both ends)
-        rightcert=ipsec-client.cert.pem  # path relative to /etc/ipsec.d/certs directory
+        leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
+        rightcert=vpn_rB_Cert.der # ditto (note we have the certs for both ends)
 
 
 
