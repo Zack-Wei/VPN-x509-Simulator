@@ -30,7 +30,7 @@ stateOrProvinceName_default     = England
 localityName_default            = Lemington
 0.organizationName_default      = Cyber22
 organizationalUnitName_default  = u2229437
-emailAddress_default            =
+emailAddress_default            = Datong.Wei@warwick.ac.uk
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).

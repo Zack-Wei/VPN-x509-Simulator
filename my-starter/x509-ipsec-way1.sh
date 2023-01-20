@@ -1,3 +1,4 @@
+#!/bin/bash
 
 X509DIR=$PWD
 
@@ -13,7 +14,7 @@ mkdir -p private certs cacerts
 # So 2048 encryption can be safely used.
 echo "echo message: generate the ipsec-server key"
 openssl genrsa -aes256 -out ./private/ipsec-server.key.pem 2048
-chmod 400 ./private/ipsec-server.key.pem
+chmod 600 ./private/ipsec-server.key.pem
 
 echo "echo message: generate the ipsec-server cert"
 # generate the server cert
@@ -31,7 +32,7 @@ mkdir -p private certs cacerts
 # So 2048 encryption can be safely used.
 echo "echo message: generate the ipsec-client key"
 openssl genrsa -aes256 -out ./private/ipsec-client.key.pem 2048
-chmod 400 ./private/ipsec-client.key.pem
+chmod 600 ./private/ipsec-client.key.pem
 
 # generate the client cert
 echo "echo message: generate the ipsec-client cert"
@@ -59,20 +60,22 @@ openssl ca -config ./openssl.cnf \
       -notext -md sha256 \
       -in unsigned/ipsec-server.csr.pem \
       -out signed/ipsec-server.cert.pem
-chmod 444 signed/ipsec-server.cert.pem
+#chmod 444 signed/ipsec-server.cert.pem
+
 openssl ca -config ./openssl.cnf \
-      -extensions server_cert \
+      -extensions usr_cert \
       -days 375 \
       -notext -md sha256 \
       -in unsigned/ipsec-client.csr.pem \
       -out signed/ipsec-client.cert.pem
-chmod 444 signed/ipsec-client.cert.pem
+#chmod 444 signed/ipsec-client.cert.pem
 
 # verify the cert
 echo "echo message: verify the cert"
 openssl x509 -noout -text -in signed/ipsec-server.cert.pem
 openssl verify -CAfile ./certs/ca-chain.cert.pem \
       ./signed/ipsec-server.cert.pem 
+
 openssl x509 -noout -text -in signed/ipsec-client.cert.pem
 openssl verify -CAfile ./certs/ca-chain.cert.pem \
       ./signed/ipsec-client.cert.pem 

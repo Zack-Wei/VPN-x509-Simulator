@@ -37,9 +37,12 @@ conn r1-gw                        #
         rightsubnet=192.168.80.0/20   # address range "hidden" behind the right end
         
         # CA Certs in /etc/ipsec.d/cacerts directory are loaded automatically at startup
-        leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
-        rightcert=vpn_rB_Cert.der # ditto (note we have the certs for both ends)
-
-
-
+#        leftcert=vpn_rA_Cert.der  # path relative to /etc/ipsec.d/certs directory
+#        rightcert=vpn_rB_Cert.der # ditto (note we have the certs for both ends)
+#way 1
+#        leftcert=ipsec-client.cert.pem  # path relative to /etc/ipsec.d/certs directory
+#        rightcert=ipsec-server.cert.pem # ditto (note we have the certs for both ends)
+#way 2
+        leftcert=vpn_client_cert.der  # path relative to /etc/ipsec.d/certs directory
+        rightcert=vpn_server_cert.der # ditto (note we have the certs for both ends)
 
